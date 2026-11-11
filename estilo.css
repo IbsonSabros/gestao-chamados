@@ -220,6 +220,66 @@ select option { background: #121a3a; }
 }
 .aviso.visivel { opacity: 1; transform: none; }
 
+/* ===== DASHBOARD ===== */
+[hidden] { display: none !important; }
+
+.dash-vazio { padding: 40px; text-align: center; color: var(--texto-suave); }
+
+/* Cards de indicadores */
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.indicador {
+  --cor: var(--azul);               /* a cor de cada card é definida pelo JavaScript */
+  padding: 18px 20px;
+  border-left: 4px solid var(--cor);
+  transition: transform 0.2s;
+}
+.indicador:hover { transform: translateY(-2px); }
+.indicador-valor { font-size: 2rem; font-weight: 700; line-height: 1.1; }
+.indicador-rotulo { margin-top: 4px; font-size: 0.82rem; color: var(--texto-suave); }
+.indicador-total {
+  border-left-color: transparent;
+  background: linear-gradient(135deg, rgba(79, 140, 255, 0.35), rgba(139, 92, 246, 0.35)), var(--cartao);
+}
+.indicador-total .indicador-rotulo { color: var(--texto); }
+
+/* Área dos gráficos */
+.graficos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grafico { padding: 22px; min-width: 0; }
+.grafico h2 { margin: 0 0 18px; font-size: 1rem; }
+.grafico-largo { grid-column: 1 / -1; }
+
+/* Gráficos de barras (feitos só com HTML e CSS) */
+.barra-linha {
+  display: grid;
+  grid-template-columns: 130px 1fr 32px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.88rem;
+}
+.barra-rotulo { color: var(--texto-suave); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barra-trilho { height: 12px; background: rgba(255, 255, 255, 0.06); border-radius: 999px; overflow: hidden; }
+.barra-preenchimento {
+  height: 100%;
+  width: 0;                         /* o JavaScript define a largura final */
+  background: var(--cor, var(--roxo));
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+.barra-valor { text-align: right; font-weight: 700; }
+
+/* Gráfico de evolução (SVG) */
+.svg-evolucao { display: block; width: 100%; height: auto; }
+.svg-grade { stroke: rgba(139, 125, 255, 0.15); stroke-width: 1; }
+.svg-texto { fill: var(--texto-suave); font-size: 11px; font-family: inherit; }
+.svg-linha { fill: none; stroke: var(--violeta); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.svg-ponto { fill: #fff; stroke: var(--roxo); stroke-width: 3; }
+
 /* ===== TELAS MENORES ===== */
 @media (max-width: 860px) {
   body { flex-direction: column; }
@@ -228,9 +288,11 @@ select option { background: #121a3a; }
   .menu-item { width: auto; }
   .aviso-prototipo { display: none; }
   .conteudo { padding: 24px 16px; }
+  .graficos { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .formulario { grid-template-columns: 1fr; padding: 20px; }
+  .barra-linha { grid-template-columns: 96px 1fr 28px; gap: 8px; }
   h1 { font-size: 1.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -21,9 +21,7 @@
     <nav class="menu" aria-label="Menu principal">
       <button class="menu-item ativo" data-tela="lista" type="button">Chamados</button>
       <button class="menu-item" data-tela="novo" type="button">Novo chamado</button>
-      <button class="menu-item" type="button" disabled title="Em breve">
-        Dashboard <span class="em-breve">em breve</span>
-      </button>
+      <button class="menu-item" data-tela="dashboard" type="button">Dashboard</button>
       <button class="menu-item" type="button" disabled title="Em breve">
         Relatórios <span class="em-breve">em breve</span>
       </button>
@@ -137,6 +135,40 @@
           <button class="botao" type="submit">Abrir chamado</button>
         </div>
       </form>
+    </section>
+
+    <!-- TELA 3: DASHBOARD (indicadores e gráficos) -->
+    <section id="tela-dashboard" class="tela">
+      <header class="topo">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="subtitulo">Visão geral dos chamados registrados.</p>
+        </div>
+      </header>
+
+      <!-- Mensagem que aparece quando ainda não existe nenhum chamado -->
+      <div id="dash-vazio" class="cartao dash-vazio" hidden>
+        Ainda não há chamados para mostrar. Abra o primeiro em “Novo chamado” e volte aqui.
+      </div>
+
+      <div id="dash-conteudo">
+        <div id="dash-cards" class="dash-cards"></div>
+
+        <div class="graficos">
+          <article class="cartao grafico">
+            <h2>Chamados por prioridade</h2>
+            <div id="grafico-prioridade"></div>
+          </article>
+          <article class="cartao grafico">
+            <h2>Chamados por setor</h2>
+            <div id="grafico-setor"></div>
+          </article>
+          <article class="cartao grafico grafico-largo">
+            <h2>Chamados abertos por dia</h2>
+            <div id="grafico-evolucao"></div>
+          </article>
+        </div>
+      </div>
     </section>
 
   </main>
