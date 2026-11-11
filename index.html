@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Chamados</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <!-- MENU LATERAL: no celular vira uma barra no topo -->
+  <aside class="sidebar">
+    <div class="marca">
+      <span class="marca-icone">◆</span>
+      <div>
+        <strong>Triagem TI</strong>
+        <small>Gestão de chamados</small>
+      </div>
+    </div>
+
+    <nav class="menu" aria-label="Menu principal">
+      <button class="menu-item ativo" data-tela="lista" type="button">Chamados</button>
+      <button class="menu-item" data-tela="novo" type="button">Novo chamado</button>
+      <button class="menu-item" type="button" disabled title="Em breve">
+        Dashboard <span class="em-breve">em breve</span>
+      </button>
+      <button class="menu-item" type="button" disabled title="Em breve">
+        Relatórios <span class="em-breve">em breve</span>
+      </button>
+    </nav>
+
+    <p class="aviso-prototipo">Protótipo com dados fictícios, salvos só neste navegador.</p>
+  </aside>
+
+  <main class="conteudo">
+
+    <!-- TELA 1: LISTA DE CHAMADOS -->
+    <section id="tela-lista" class="tela ativa">
+      <header class="topo">
+        <div>
+          <h1>Chamados</h1>
+          <p id="contagem" class="subtitulo"></p>
+        </div>
+        <div class="topo-acoes">
+          <button id="btn-restaurar" class="botao botao-suave" type="button">Restaurar exemplos</button>
+          <button class="botao" type="button" data-tela="novo">+ Novo chamado</button>
+        </div>
+      </header>
+
+      <div class="cartao tabela-caixa">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Setor</th>
+              <th>Prioridade</th>
+              <th>Status</th>
+              <th>Abertura</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TELA 2: FORMULÁRIO DE NOVO CHAMADO -->
+    <section id="tela-novo" class="tela">
+      <header class="topo">
+        <div>
+          <h1>Novo chamado</h1>
+          <p class="subtitulo">Preencha os dados da demanda. A data e a hora são registradas automaticamente.</p>
+        </div>
+      </header>
+
+      <form id="formulario" class="cartao formulario">
+        <label class="campo campo-largo">
+          Título do chamado
+          <input type="text" name="titulo" required maxlength="100" placeholder="Ex.: Impressora do setor não imprime">
+        </label>
+
+        <label class="campo">
+          Setor solicitante
+          <select name="setor" required>
+            <option value="">Selecione...</option>
+            <option>Financeiro</option>
+            <option>Recursos Humanos</option>
+            <option>Comercial</option>
+            <option>Marketing</option>
+            <option>Logística</option>
+            <option>Jurídico</option>
+            <option>Atendimento</option>
+          </select>
+        </label>
+
+        <label class="campo">
+          Nome do solicitante
+          <input type="text" name="solicitante" required maxlength="60" placeholder="Nome completo">
+        </label>
+
+        <label class="campo">
+          Categoria
+          <select name="categoria" required>
+            <option value="">Selecione...</option>
+            <option>Acesso e senhas</option>
+            <option>Hardware</option>
+            <option>Software</option>
+            <option>Rede e internet</option>
+            <option>Sistema interno</option>
+            <option>Outros</option>
+          </select>
+        </label>
+
+        <label class="campo">
+          Prioridade
+          <select name="prioridade" required>
+            <option value="">Selecione...</option>
+            <option>Baixa</option>
+            <option>Média</option>
+            <option>Alta</option>
+            <option>Urgente</option>
+          </select>
+        </label>
+
+        <label class="campo campo-largo">
+          Descrição detalhada
+          <textarea name="descricao" required rows="4" maxlength="800" placeholder="Descreva o problema ou a necessidade com o máximo de detalhes."></textarea>
+        </label>
+
+        <label class="campo campo-largo">
+          Impacto nas atividades do setor
+          <textarea name="impacto" required rows="3" maxlength="400" placeholder="O que deixa de funcionar ou fica mais lento por causa disso?"></textarea>
+        </label>
+
+        <div class="formulario-acoes campo-largo">
+          <button class="botao botao-suave" type="button" data-tela="lista">Cancelar</button>
+          <button class="botao" type="submit">Abrir chamado</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Aviso rápido que aparece depois de salvar -->
+  <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
